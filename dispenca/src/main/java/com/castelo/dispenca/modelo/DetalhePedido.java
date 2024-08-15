@@ -1,4 +1,4 @@
-package com.castelo.modelo;
+package com.castelo.dispenca.modelo;
 
 public class DetalhePedido {
 
