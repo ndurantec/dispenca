@@ -2,22 +2,22 @@ package com.castelo.dispenca.modelo;
 
 public class Alimento {
 
-    private int id;
+    private Long id;
     private String nome;
 
     public Alimento() {
     }
 
-    public Alimento(int id, String nome) {
+    public Alimento(Long id, String nome) {
         this.id = id;
         this.nome = nome;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
