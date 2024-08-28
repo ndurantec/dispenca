@@ -1,5 +1,6 @@
 package com.castelo.dispenca.modelo;
 
+
 public class Alimento {
 
     private Long id;
