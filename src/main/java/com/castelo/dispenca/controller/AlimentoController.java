@@ -24,15 +24,19 @@ public class AlimentoController {
     
 
     @GetMapping(value = "/findAll")
-    public List findALL(){
+    public List findAll(){
         return alimentoRepository.findAll();
     }
     
     @PostMapping(value = "/insert")
     public ResponseEntity<Alimento> insert(@RequestBody AlimentoDTO alimentoDTO){
 
+        System.out.println(alimentoDTO.toString());
+
         Alimento alimento = alimentoDTO.novoAlimento();
         alimentoRepository.save(alimento);
+
+        System.out.println("chegou no insert");
 
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
             .path("/{id}")
