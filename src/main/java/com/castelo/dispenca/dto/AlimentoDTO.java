@@ -34,10 +34,12 @@ public class AlimentoDTO {
 
     }
     
-   // public Alimento novoAlimento() {
+   /*  Modelo de estrutura
+   
+   public Alimento novoAlimento() {
 
-      //  return new Alimento(null, this.name);
+        return new Alimento(null, this.name);
     
-   // }
+    } */
     
 }
