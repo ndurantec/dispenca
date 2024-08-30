@@ -30,7 +30,7 @@ public class AlimentoDTO {
 
     public Alimento novoAlimento(){
 
-        return new Alimento(null, this.nome);
+        return new Alimento(null, nome);
 
     }
     

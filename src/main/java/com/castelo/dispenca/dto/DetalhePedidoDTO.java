@@ -4,7 +4,7 @@ import com.castelo.dispenca.modelo.DetalhePedido;
 
 public class DetalhePedidoDTO {
 
-    private int id;
+    private Long id;
     private int quantidadeSolicita;
     private double valor;
     private boolean statusentrega;
@@ -12,18 +12,18 @@ public class DetalhePedidoDTO {
     public DetalhePedidoDTO() {
     }
 
-    public DetalhePedidoDTO(int id, int quantidadeSolicita, double valor, boolean statusentrega) {
+    public DetalhePedidoDTO(Long id, int quantidadeSolicita, double valor, boolean statusentrega) {
         this.id = id;
         this.quantidadeSolicita = quantidadeSolicita;
         this.valor = valor;
         this.statusentrega = statusentrega;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

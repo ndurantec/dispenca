@@ -7,3 +7,5 @@ import com.castelo.dispenca.modelo.Alimento;
 public interface AlimentoRepository extends JpaRepository<Alimento, Long> {
     
 }
+
+

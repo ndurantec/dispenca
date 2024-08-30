@@ -73,7 +73,7 @@ public class EstoqueDTO {
 
     public Estoque novoEstoque(){
 
-        return new Estoque(id, alimento, quantidade, codigo, data);
+        return new Estoque(null, alimento, quantidade, codigo, data);
 
     }
     

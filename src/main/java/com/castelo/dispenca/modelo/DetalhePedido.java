@@ -1,8 +1,22 @@
 package com.castelo.dispenca.modelo;
 
-public class DetalhePedido {
+import java.io.Serializable;
 
-    private int id;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
+public class DetalhePedido implements Serializable{
+
+    // private static final long serialVersionUID = 1;
+
+    private static final long serialVersionUID = 1L;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private int quantidadeSolicitada;
     private double valor;
     private boolean statusentrega;
@@ -10,18 +24,18 @@ public class DetalhePedido {
     public DetalhePedido() {
     }
 
-    public DetalhePedido(int id, int quantidadeSolicitada, double valor, boolean statusentrega) {
+    public DetalhePedido(Long id, int quantidadeSolicitada, double valor, boolean statusentrega) {
         this.id = id;
         this.quantidadeSolicitada = quantidadeSolicitada;
         this.valor = valor;
         this.statusentrega = statusentrega;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

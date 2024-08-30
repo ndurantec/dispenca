@@ -6,7 +6,7 @@ import com.castelo.dispenca.modelo.Pedido;
 
 public class PedidoDTO {
 
-    private int id;
+    private Long id;
     private String origem;
     private LocalDateTime dataPedido;
     private LocalDateTime dataEntrega;
@@ -14,18 +14,18 @@ public class PedidoDTO {
     public PedidoDTO() {
     }
 
-    public PedidoDTO(int id, String origem, LocalDateTime dataPedido, LocalDateTime dataEntrega) {
+    public PedidoDTO(Long id, String origem, LocalDateTime dataPedido, LocalDateTime dataEntrega) {
         this.id = id;
         this.origem = origem;
         this.dataPedido = dataPedido;
         this.dataEntrega = dataEntrega;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -60,10 +60,10 @@ public class PedidoDTO {
  
  } */
 
-    public Pedido novoPedido(){
+     public Pedido novoPedido(){
 
         return new Pedido(id, origem, dataPedido, dataEntrega);
 
-    }
+    } 
     
 }
