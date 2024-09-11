@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.jersey.JerseyProperties.Servlet;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -125,4 +126,15 @@ public class PedidoController {
 
     //Se não tá vermelho é pq tá funcionando
 
+    /* @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Void> deletar(@PathVariable Long id){
+    alimentoRepository.deleteById(id);
+    return ResponseEntity.noContent().build();
+} */
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Void> deletarPedido(@PathVariable Long id){
+        pedidoRepository.deleteById(id);
+        return ResponseEntity.noContent().build();
+    }
 }

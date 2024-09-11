@@ -77,12 +77,18 @@ public class AlimentoController {
 
     }
 
-    @DeleteMapping("/{id}")
+   /* @DeleteMapping("/{id}")
     public ResponseEntity<Object> delete(@PathVariable Long id){
         return alimentoRepository.findById(id)
         .map(alimento -> { alimentoRepository.delete(alimento); 
             return ResponseEntity.noContent().build();})
             .orElseGet(() -> ResponseEntity.notFound().build());
+    } */
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Void> deletar(@PathVariable Long id){
+        alimentoRepository.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 
 }
