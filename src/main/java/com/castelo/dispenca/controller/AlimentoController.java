@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -74,6 +75,14 @@ public class AlimentoController {
 
         return ResponseEntity.noContent().build();
 
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Object> delete(@PathVariable Long id){
+        return alimentoRepository.findById(id)
+        .map(alimento -> { alimentoRepository.delete(alimento); 
+            return ResponseEntity.noContent().build();})
+            .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
 }

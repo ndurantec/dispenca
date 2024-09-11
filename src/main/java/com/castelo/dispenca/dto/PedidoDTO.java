@@ -60,10 +60,10 @@ public class PedidoDTO {
  
  } */
 
-     public Pedido novoPedido(){
+    public Pedido novoPedido() {
 
         return new Pedido(id, origem, dataPedido, dataEntrega);
 
-    } 
+    }
     
 }
