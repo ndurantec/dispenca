@@ -1,5 +1,71 @@
 package com.castelo.dispenca.controller;
 
+import java.net.URI;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.jersey.JerseyProperties.Servlet;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import com.castelo.dispenca.dto.DetalhePedidoDTO;
+import com.castelo.dispenca.modelo.DetalhePedido;
+import com.castelo.dispenca.repository.DetalhePedidorepository;
+
+
+@RestController
+@RequestMapping(value = "/DetalhePedido")
 public class DetalhePedidoController {
+
+    @Autowired
+    private DetalhePedidorepository detalhePedidorepository;
+
+    /* @GetMapping(value = "/findAll")
+    public List findAll(){   
+    return alimentoRepository.findAll();
+    } */
+
+    // 1 ok
+
+    @GetMapping(value = "/findAll")
+    public List findAll(){
+        return detalhePedidorepository.findAll();
+    }
     
+    // Que preguiça de fazer isso, misericórdiaaaaa
+
+ /* @PostMapping(value = "/insert")
+    public ResponseEntity<Alimento> insert(@RequestBody AlimentoDTO alimentoDTO) {
+        System.out.println(alimentoDTO.toString());
+        Alimento alimento = alimentoDTO.novoAlimento();
+        alimentoRepository.save(alimento);
+        System.out.println("chegou no insert");
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
+            .path("/{id}")
+            .buildAndExpand(alimento.getId())
+            .toUri();
+        return ResponseEntity.created(uri).body(alimento);
+ } */
+
+
+    /* @PostMapping(value = "/insert")
+    public ResponseEntity<DetalhePedido> inserirDetalhe(@RequestBody DetalhePedidoDTO detalhePedidoDTO){
+
+        System.out.println(detalhePedidoDTO.toString());
+        DetalhePedido detalhePedido = detalhePedidoDTO.novoDetalhePedido();
+        detalhePedidorepository.save(detalhePedido);
+        System.out.println("chegou no insert");
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
+            .path("/{id}")
+            .buildAndExpand(detalhePedido.getId())
+            .toUri();
+            return ResponseEntity.created(uri).body(detalhePedido);
+
+    } */
+
 }
