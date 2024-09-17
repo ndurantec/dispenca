@@ -129,7 +129,7 @@ public class PedidoController {
     public ResponseEntity<Void> deletar(@PathVariable Long id){
     alimentoRepository.deleteById(id);
     return ResponseEntity.noContent().build();
-} */
+}   */
 
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Void> deletarPedido(@PathVariable Long id){

@@ -6,9 +6,11 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -100,10 +102,40 @@ public class DetalhePedidoController {
 
     return ResponseEntity.noContent().build(); */
 
-    // public void atualizarDetalhePedido(){
+    // 4 ok
 
-        // Optional<DetalhePedido> detalhePedidoBanco = detalhePedidorepository.findById(null);
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<Void> atualizarDetalhePedido(@PathVariable Long id, @RequestBody DetalhePedido detalhePedido){
 
-    // }
+        Optional<DetalhePedido> detalhePedidoBanco = detalhePedidorepository.findById(id);
+
+        DetalhePedido detalhePedidoModificado = detalhePedidoBanco.get();
+
+        detalhePedidoModificado.setQuantidadeSolicitada(detalhePedido.getQuantidadeSolicitada());
+
+        detalhePedidoModificado.setValor(detalhePedido.getValor());
+
+        detalhePedidorepository.save(detalhePedidoModificado);
+
+        return ResponseEntity.noContent().build();
+
+    }
+
+    /* @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Void> deletar(@PathVariable Long id){
+    alimentoRepository.deleteById(id);
+    return ResponseEntity.noContent().build();
+    */
+
+    // 5 ok
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Void> deletarDetalhePedido(@PathVariable Long id){
+
+        detalhePedidorepository.deleteById(id);
+
+        return ResponseEntity.noContent().build();
+
+    }
 
 }
