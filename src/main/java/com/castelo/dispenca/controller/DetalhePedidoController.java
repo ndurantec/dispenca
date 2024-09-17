@@ -2,11 +2,12 @@ package com.castelo.dispenca.controller;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.jersey.JerseyProperties.Servlet;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -52,8 +53,9 @@ public class DetalhePedidoController {
         return ResponseEntity.created(uri).body(alimento);
  } */
 
+    // 2 ok
 
-    /* @PostMapping(value = "/insert")
+    @PostMapping(value = "/insert")
     public ResponseEntity<DetalhePedido> inserirDetalhe(@RequestBody DetalhePedidoDTO detalhePedidoDTO){
 
         System.out.println(detalhePedidoDTO.toString());
@@ -64,8 +66,44 @@ public class DetalhePedidoController {
             .path("/{id}")
             .buildAndExpand(detalhePedido.getId())
             .toUri();
-            return ResponseEntity.created(uri).body(detalhePedido);
+        return ResponseEntity.created(uri).body(detalhePedido);
 
-    } */
+    }
+
+     /*  @GetMapping(value = "/{id}")
+        public ResponseEntity<Alimento> findById(@PathVariable Long id){
+        return alimentoRepository.findById(id)
+            .map(registro -> ResponseEntity.ok().body(registro))
+            .orElse(ResponseEntity.notFound().build()); */
+
+            // 3 ok
+
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<DetalhePedido> findById(@PathVariable Long id){
+
+        return detalhePedidorepository.findById(id)
+            .map(registro -> ResponseEntity.ok().body(registro))
+            .orElse(ResponseEntity.notFound().build());
+
+    }
+
+        /* @PutMapping(value = "/{id}")
+    public ResponseEntity<Void> update(@PathVariable Long id, @RequestBody Alimento alimento){
+
+    Optional<Alimento> alimentoBanco = alimentoRepository.findById(id);
+
+    Alimento alimentoModificado = alimentoBanco.get();
+
+    alimentoModificado.setNome(alimento.getNome());
+
+    alimentoRepository.save(alimentoModificado);
+
+    return ResponseEntity.noContent().build(); */
+
+    // public void atualizarDetalhePedido(){
+
+        // Optional<DetalhePedido> detalhePedidoBanco = detalhePedidorepository.findById(null);
+
+    // }
 
 }

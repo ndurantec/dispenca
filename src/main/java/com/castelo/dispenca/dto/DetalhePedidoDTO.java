@@ -58,7 +58,7 @@ public class DetalhePedidoDTO {
  
     } */
 
-    public DetalhePedido novDetalhePedido(){
+    public DetalhePedido novoDetalhePedido(){
 
         return new DetalhePedido(id, quantidadeSolicita, valor, statusentrega);
 
