@@ -61,7 +61,7 @@ public class EstoqueController {
     // 2 ok
 
     @PostMapping(value = "/insert")
-    public ResponseEntity<Estoque> inserirEstoque(@RequestBody EstoqueDTO estoqueDTO){
+    public ResponseEntity<Estoque> insert(@RequestBody EstoqueDTO estoqueDTO){
 
         System.out.println(estoqueDTO.toString());
 
