@@ -19,7 +19,8 @@
 # ----------------------------------------------------------------------------
 
 # Defina MAVEN_HOME e atualize PATH
-export MAVEN_HOME="/c/Program Files/apache-maven-3.9.6"
+# export MAVEN_HOME="/c/Program Files/apache-maven-3.9.6" 
+export MAVEN_HOME="C:\Users\gydep\Downloads\apache-maven-3.9.9" 
 export PATH="$MAVEN_HOME/bin:$PATH"
 
 # ----------------------------------------------------------------------------
