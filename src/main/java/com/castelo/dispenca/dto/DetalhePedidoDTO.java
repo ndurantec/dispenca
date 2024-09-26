@@ -7,12 +7,12 @@ public class DetalhePedidoDTO {
     private Long id;
     private int quantidadeSolicita;
     private double valor;
-    private boolean statusentrega;
+    private String statusentrega;
 
     public DetalhePedidoDTO() {
     }
 
-    public DetalhePedidoDTO(Long id, int quantidadeSolicita, double valor, boolean statusentrega) {
+    public DetalhePedidoDTO(Long id, int quantidadeSolicita, double valor, String statusentrega) {
         this.id = id;
         this.quantidadeSolicita = quantidadeSolicita;
         this.valor = valor;
@@ -43,25 +43,18 @@ public class DetalhePedidoDTO {
         this.valor = valor;
     }
 
-    public boolean isStatusentrega() {
+    public String getStatusentrega() {
         return statusentrega;
     }
 
-    public void setStatusentrega(boolean statusentrega) {
+    public void setStatusentrega(String statusentrega) {
         this.statusentrega = statusentrega;
     }
+    
+    public DetalhePedido novoDetalhe(){
 
-        /* Modelo de estrutura 
-        
-        public Alimento novoAlimento() {
-     return new Alimento(null, this.name);
- 
-    } */
-
-    public DetalhePedido novoDetalhePedido(){
-
-        return new DetalhePedido(id, quantidadeSolicita, valor, statusentrega);
+        return new DetalhePedido(quantidadeSolicita, valor, statusentrega);
 
     }
-    
+
 }

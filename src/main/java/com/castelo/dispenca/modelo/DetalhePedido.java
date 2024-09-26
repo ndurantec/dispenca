@@ -19,16 +19,23 @@ public class DetalhePedido implements Serializable{
     private Long id;
     private int quantidadeSolicitada;
     private double valor;
-    private boolean statusentrega;
+    private String statusentrega;
 
     public DetalhePedido() {
     }
 
-    public DetalhePedido(Long id, int quantidadeSolicitada, double valor, boolean statusentrega) {
-        this.id = id;
+
+    
+    public DetalhePedido(int quantidadeSolicitada, double valor, String statusentrega) {
         this.quantidadeSolicitada = quantidadeSolicitada;
         this.valor = valor;
         this.statusentrega = statusentrega;
+    }
+
+
+
+    public static long getSerialversionuid() {
+        return serialVersionUID;
     }
 
     public Long getId() {
@@ -55,11 +62,11 @@ public class DetalhePedido implements Serializable{
         this.valor = valor;
     }
 
-    public boolean isStatusentrega() {
+    public String getStatusentrega() {
         return statusentrega;
     }
 
-    public void setStatusentrega(boolean statusentrega) {
+    public void setStatusentrega(String statusentrega) {
         this.statusentrega = statusentrega;
     }
 
@@ -71,7 +78,7 @@ public class DetalhePedido implements Serializable{
         long temp;
         temp = Double.doubleToLongBits(valor);
         result = prime * result + (int) (temp ^ (temp >>> 32));
-        result = prime * result + (statusentrega ? 1231 : 1237);
+        result = prime * result + ((statusentrega == null) ? 0 : statusentrega.hashCode());
         return result;
     }
 
@@ -88,7 +95,10 @@ public class DetalhePedido implements Serializable{
             return false;
         if (Double.doubleToLongBits(valor) != Double.doubleToLongBits(other.valor))
             return false;
-        if (statusentrega != other.statusentrega)
+        if (statusentrega == null) {
+            if (other.statusentrega != null)
+                return false;
+        } else if (!statusentrega.equals(other.statusentrega))
             return false;
         return true;
     }
@@ -98,5 +108,6 @@ public class DetalhePedido implements Serializable{
         return "DetalhePedido [quantidadeSolicitada=" + quantidadeSolicitada + ", valor=" + valor + ", statusentrega="
                 + statusentrega + "]";
     }
+
     
 }

@@ -63,7 +63,7 @@ public class DetalhePedidoController {
     public ResponseEntity<DetalhePedido> inserirDetalhe(@RequestBody DetalhePedidoDTO detalhePedidoDTO){
 
         System.out.println(detalhePedidoDTO.toString());
-        DetalhePedido detalhePedido = detalhePedidoDTO.novoDetalhePedido();
+        DetalhePedido detalhePedido = detalhePedidoDTO.novoDetalhe();
         detalhePedidorepository.save(detalhePedido);
         System.out.println("chegou no insert");
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
