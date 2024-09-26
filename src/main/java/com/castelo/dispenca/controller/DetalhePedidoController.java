@@ -62,6 +62,12 @@ public class DetalhePedidoController {
     @PostMapping(value = "/insert")
     public ResponseEntity<DetalhePedido> inserirDetalhe(@RequestBody DetalhePedidoDTO detalhePedidoDTO){
 
+
+    
+        System.out.println("==================================================");
+        System.out.println("==================================================");
+        System.out.println("==================================================");
+        System.out.println("==================================================");
         System.out.println(detalhePedidoDTO.toString());
         DetalhePedido detalhePedido = detalhePedidoDTO.novoDetalhe();
         detalhePedidorepository.save(detalhePedido);

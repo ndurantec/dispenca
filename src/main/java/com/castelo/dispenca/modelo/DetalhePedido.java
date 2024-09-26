@@ -19,25 +19,18 @@ public class DetalhePedido implements Serializable{
     private Long id;
     private int quantidadeSolicitada;
     private double valor;
-    private String statusentrega;
+    private String statusEntrega;
 
+    @Deprecated
     public DetalhePedido() {
     }
 
-
-    
-    public DetalhePedido(int quantidadeSolicitada, double valor, String statusentrega) {
+    public DetalhePedido(int quantidadeSolicitada, double valor, String statusEntrega) {
         this.quantidadeSolicitada = quantidadeSolicitada;
         this.valor = valor;
-        this.statusentrega = statusentrega;
+        this.statusEntrega = statusEntrega;
     }
-
-
-
-    public static long getSerialversionuid() {
-        return serialVersionUID;
-    }
-
+    
     public Long getId() {
         return id;
     }
@@ -62,12 +55,18 @@ public class DetalhePedido implements Serializable{
         this.valor = valor;
     }
 
-    public String getStatusentrega() {
-        return statusentrega;
+    public String getStatusEntrega() {
+        return statusEntrega;
     }
 
-    public void setStatusentrega(String statusentrega) {
-        this.statusentrega = statusentrega;
+    public void setStatusEntrega(String statusEntrega) {
+        this.statusEntrega = statusEntrega;
+    }
+
+    @Override
+    public String toString() {
+        return "DetalhePedido [id=" + id + ", quantidadeSolicitada=" + quantidadeSolicitada + ", valor=" + valor
+                + ", statusEntrega=" + statusEntrega + "]";
     }
 
     @Override
@@ -78,7 +77,7 @@ public class DetalhePedido implements Serializable{
         long temp;
         temp = Double.doubleToLongBits(valor);
         result = prime * result + (int) (temp ^ (temp >>> 32));
-        result = prime * result + ((statusentrega == null) ? 0 : statusentrega.hashCode());
+        result = prime * result + ((statusEntrega == null) ? 0 : statusEntrega.hashCode());
         return result;
     }
 
@@ -95,19 +94,13 @@ public class DetalhePedido implements Serializable{
             return false;
         if (Double.doubleToLongBits(valor) != Double.doubleToLongBits(other.valor))
             return false;
-        if (statusentrega == null) {
-            if (other.statusentrega != null)
+        if (statusEntrega == null) {
+            if (other.statusEntrega != null)
                 return false;
-        } else if (!statusentrega.equals(other.statusentrega))
+        } else if (!statusEntrega.equals(other.statusEntrega))
             return false;
         return true;
     }
+   
 
-    @Override
-    public String toString() {
-        return "DetalhePedido [quantidadeSolicitada=" + quantidadeSolicitada + ", valor=" + valor + ", statusentrega="
-                + statusentrega + "]";
-    }
-
-    
 }

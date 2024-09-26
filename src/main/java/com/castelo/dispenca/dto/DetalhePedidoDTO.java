@@ -5,18 +5,17 @@ import com.castelo.dispenca.modelo.DetalhePedido;
 public class DetalhePedidoDTO {
 
     private Long id;
-    private int quantidadeSolicita;
+    private int quantidadeSolicitada;
     private double valor;
-    private String statusentrega;
+    private String statusEntrega;
 
     public DetalhePedidoDTO() {
     }
 
-    public DetalhePedidoDTO(Long id, int quantidadeSolicita, double valor, String statusentrega) {
-        this.id = id;
-        this.quantidadeSolicita = quantidadeSolicita;
+    public DetalhePedidoDTO(int quantidadeSolicitada, double valor, String statusEntrega) {
+        this.quantidadeSolicitada = quantidadeSolicitada;
         this.valor = valor;
-        this.statusentrega = statusentrega;
+        this.statusEntrega = statusEntrega;
     }
 
     public Long getId() {
@@ -27,12 +26,12 @@ public class DetalhePedidoDTO {
         this.id = id;
     }
 
-    public int getQuantidadeSolicita() {
-        return quantidadeSolicita;
+    public int getQuantidadeSolicitada() {
+        return quantidadeSolicitada;
     }
 
-    public void setQuantidadeSolicita(int quantidadeSolicita) {
-        this.quantidadeSolicita = quantidadeSolicita;
+    public void setQuantidadeSolicitada(int quantidadeSolicitada) {
+        this.quantidadeSolicitada = quantidadeSolicitada;
     }
 
     public double getValor() {
@@ -43,18 +42,29 @@ public class DetalhePedidoDTO {
         this.valor = valor;
     }
 
-    public String getStatusentrega() {
-        return statusentrega;
+    public String getStatusEntrega() {
+        return statusEntrega;
     }
 
-    public void setStatusentrega(String statusentrega) {
-        this.statusentrega = statusentrega;
+    public void setStatusEntrega(String statusEntrega) {
+        this.statusEntrega = statusEntrega;
     }
-    
-    public DetalhePedido novoDetalhe(){
+  
+    public DetalhePedido novoDetalhe() {
+        System.out.println("**********************************");
+        System.out.println("**********************************");
+        System.out.println("**********************************");
+        System.out.println(this.quantidadeSolicitada);
+        System.out.println(this.valor);
+        System.out.println(this.statusEntrega);
+        
+        return new DetalhePedido(this.quantidadeSolicitada, this.valor, this.statusEntrega);
+    }
 
-        return new DetalhePedido(quantidadeSolicita, valor, statusentrega);
-
+    @Override
+    public String toString() {
+        return "DetalhePedidoDTO [id=" + id + ", quantidadeSolicita=" + quantidadeSolicitada + ", valor=" + valor
+                + ", statusEentrega=" + statusEntrega + "]";
     }
 
 }
