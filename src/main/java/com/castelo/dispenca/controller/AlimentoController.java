@@ -28,13 +28,12 @@ public class AlimentoController {
 
     @Autowired
     private AlimentoRepository alimentoRepository;
-    
 
     @GetMapping(value = "/findAll")
-    public List findAll(){   
-       return alimentoRepository.findAll();
+    public List findAll() {
+        return alimentoRepository.findAll();
     }
-    
+
     @PostMapping(value = "/insert")
     public ResponseEntity<Alimento> insert(@RequestBody AlimentoDTO alimentoDTO) {
 
@@ -46,26 +45,42 @@ public class AlimentoController {
         System.out.println("chegou no insert");
 
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
-            .path("/{id}")
-            .buildAndExpand(alimento.getId())
-            .toUri();
+                .path("/{id}")
+                .buildAndExpand(alimento.getId())
+                .toUri();
 
         return ResponseEntity.created(uri).body(alimento);
 
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<Alimento> findById(@PathVariable Long id){
+    public ResponseEntity<Alimento> findById(@PathVariable Long id) {
 
         return alimentoRepository.findById(id)
-            .map(registro -> ResponseEntity.ok().body(registro))
+                .map(registro -> ResponseEntity.ok().body(registro))
                 .orElse(ResponseEntity.notFound().build());
-            
 
     }
 
+    @GetMapping(value = "/findByNome")
+    public List<Alimento> buscarPorNome(@RequestBody AlimentoDTO alimentoDTO) {
+        return alimentoRepository.findByNome(alimentoDTO.getNome());
+   }
+
+   /* @PostMapping("/findByNome")
+    public ResponseEntity<Long> buscarContaPorNome(@RequestBody ContaDto contaDto) {
+        Optional<Alimento> alimento = alimentoRepository.findByNome(alimentoDTO.getNome());
+        Conta contaObjeto = conta.get();
+        System.out.println(contaObjeto.toString());
+        return conta.map(c -> ResponseEntity.ok(c.getId()))
+                .orElse(ResponseEntity.notFound().build());
+    } */
+
+
+
+
     @PutMapping(value = "/{id}")
-    public ResponseEntity<Void> update(@PathVariable Long id, @RequestBody Alimento alimento){
+    public ResponseEntity<Void> update(@PathVariable Long id, @RequestBody Alimento alimento) {
 
         Optional<Alimento> alimentoBanco = alimentoRepository.findById(id);
 
@@ -79,16 +94,18 @@ public class AlimentoController {
 
     }
 
-   /* @DeleteMapping("/{id}")
-    public ResponseEntity<Object> delete(@PathVariable Long id){
-        return alimentoRepository.findById(id)
-        .map(alimento -> { alimentoRepository.delete(alimento); 
-            return ResponseEntity.noContent().build();})
-            .orElseGet(() -> ResponseEntity.notFound().build());
-    } */
+    /*
+     * @DeleteMapping("/{id}")
+     * public ResponseEntity<Object> delete(@PathVariable Long id){
+     * return alimentoRepository.findById(id)
+     * .map(alimento -> { alimentoRepository.delete(alimento);
+     * return ResponseEntity.noContent().build();})
+     * .orElseGet(() -> ResponseEntity.notFound().build());
+     * }
+     */
 
     @DeleteMapping(value = "/{id}")
-    public ResponseEntity<Void> deletar(@PathVariable Long id){
+    public ResponseEntity<Void> deletar(@PathVariable Long id) {
         alimentoRepository.deleteById(id);
         return ResponseEntity.noContent().build();
     }
