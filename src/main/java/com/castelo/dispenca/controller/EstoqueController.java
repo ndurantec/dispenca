@@ -17,10 +17,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.castelo.dispenca.dto.AlimentoDTO;
 import com.castelo.dispenca.dto.EstoqueDTO;
+import com.castelo.dispenca.modelo.Alimento;
 import com.castelo.dispenca.modelo.Estoque;
 import com.castelo.dispenca.repository.EstoqueRepository;
-
 
 @RestController
 @CrossOrigin("*")
@@ -29,39 +30,43 @@ public class EstoqueController {
 
     @Autowired
     private EstoqueRepository estoqueRepository;
-    
-    /* @GetMapping(value = "/findAll")
-    public List findAll(){   
-    return alimentoRepository.findAll();
-    } */
+
+    /*
+     * @GetMapping(value = "/findAll")
+     * public List findAll(){
+     * return alimentoRepository.findAll();
+     * }
+     */
 
     // 1 ok
 
     @GetMapping(value = "/findAll")
 
-    public List findAll(){
+    public List findAll() {
         return estoqueRepository.findAll();
 
     }
 
-
-    /* @PostMapping(value = "/insert")
-    public ResponseEntity<Alimento> insert(@RequestBody AlimentoDTO alimentoDTO) {
-    System.out.println(alimentoDTO.toString());
-    Alimento alimento = alimentoDTO.novoAlimento();
-    alimentoRepository.save(alimento);
-    System.out.println("chegou no insert");
-    URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
-     .path("/{id}")
-     .buildAndExpand(alimento.getId())
-     .toUri();
-    return ResponseEntity.created(uri).body(alimento);
-    } */
+    /*
+     * @PostMapping(value = "/insert")
+     * public ResponseEntity<Alimento> insert(@RequestBody AlimentoDTO alimentoDTO)
+     * {
+     * System.out.println(alimentoDTO.toString());
+     * Alimento alimento = alimentoDTO.novoAlimento();
+     * alimentoRepository.save(alimento);
+     * System.out.println("chegou no insert");
+     * URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
+     * .path("/{id}")
+     * .buildAndExpand(alimento.getId())
+     * .toUri();
+     * return ResponseEntity.created(uri).body(alimento);
+     * }
+     */
 
     // 2 ok
 
     @PostMapping(value = "/insert")
-    public ResponseEntity<Estoque> insert(@RequestBody EstoqueDTO estoqueDTO){
+    public ResponseEntity<Estoque> insert(@RequestBody EstoqueDTO estoqueDTO) {
 
         System.out.println(estoqueDTO.toString());
 
@@ -72,47 +77,58 @@ public class EstoqueController {
         System.out.println("chegou o insert");
 
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
-            .path("/{id}")
-            .buildAndExpand(estoque.getId())
-            .toUri();
+                .path("/{id}")
+                .buildAndExpand(estoque.getId())
+                .toUri();
 
         return ResponseEntity.created(uri).body(estoque);
-       
+
     }
 
+    /*
+     * @GetMapping(value = "/{id}")
+     * public ResponseEntity<Alimento> findById(@PathVariable Long id){
+     * return alimentoRepository.findById(id)
+     * .map(registro -> ResponseEntity.ok().body(registro))
+     * .orElse(ResponseEntity.notFound().build());
+     */
 
-
-    /*  @GetMapping(value = "/{id}")
-   public ResponseEntity<Alimento> findById(@PathVariable Long id){
-   return alimentoRepository.findById(id)
-    .map(registro -> ResponseEntity.ok().body(registro))
-        .orElse(ResponseEntity.notFound().build()); */
-
-        // 3 ok
+    // 3 ok
+               
+    @PostMapping(value = "/findByCodigo")
+    public Estoque findByCodigo(@RequestBody EstoqueDTO estoqueDTO){
+        return estoqueRepository.findByCodigo(estoqueDTO.getCodigo());
+    }
+    
+    
+    
+        
 
     @GetMapping(value = "/{id}")
-     public ResponseEntity<Estoque> findById(@PathVariable Long id){
-            
+    public ResponseEntity<Estoque> findById(@PathVariable Long id) {
+
         return estoqueRepository.findById(id)
 
-            .map(registro -> ResponseEntity.ok().body(registro))
+                .map(registro -> ResponseEntity.ok().body(registro))
 
-            .orElse(ResponseEntity.notFound().build());
+                .orElse(ResponseEntity.notFound().build());
     }
 
-
-        /* @PutMapping(value = "/{id}")
-    public ResponseEntity<Void> update(@PathVariable Long id, @RequestBody Alimento alimento){
-    Optional<Alimento> alimentoBanco = alimentoRepository.findById(id);
-    Alimento alimentoModificado = alimentoBanco.get();
-    alimentoModificado.setNome(alimento.getNome());
-    alimentoRepository.save(alimentoModificado);
-    return ResponseEntity.noContent().build(); */
+    /*
+     * @PutMapping(value = "/{id}")
+     * public ResponseEntity<Void> update(@PathVariable Long id, @RequestBody
+     * Alimento alimento){
+     * Optional<Alimento> alimentoBanco = alimentoRepository.findById(id);
+     * Alimento alimentoModificado = alimentoBanco.get();
+     * alimentoModificado.setNome(alimento.getNome());
+     * alimentoRepository.save(alimentoModificado);
+     * return ResponseEntity.noContent().build();
+     */
 
     // 4 ok
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<Void> atualizarEstoque(@PathVariable Long id, @RequestBody Estoque estoque){
+    public ResponseEntity<Void> atualizarEstoque(@PathVariable Long id, @RequestBody Estoque estoque) {
 
         Optional<Estoque> estoqueBanco = estoqueRepository.findById(id);
 
@@ -131,16 +147,18 @@ public class EstoqueController {
         return ResponseEntity.noContent().build();
     }
 
-        /* @DeleteMapping(value = "/{id}")
-    public ResponseEntity<Void> deletar(@PathVariable Long id){
-    alimentoRepository.deleteById(id);
-    return ResponseEntity.noContent().build();
-    } */
+    /*
+     * @DeleteMapping(value = "/{id}")
+     * public ResponseEntity<Void> deletar(@PathVariable Long id){
+     * alimentoRepository.deleteById(id);
+     * return ResponseEntity.noContent().build();
+     * }
+     */
 
-        // 5 ok
+    // 5 ok
 
     @DeleteMapping(value = "/{id}")
-    public ResponseEntity<Void> deletarEstoque(@PathVariable Long id){
+    public ResponseEntity<Void> deletarEstoque(@PathVariable Long id) {
 
         estoqueRepository.deleteById(id);
 

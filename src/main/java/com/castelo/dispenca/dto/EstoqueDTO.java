@@ -1,6 +1,6 @@
 package com.castelo.dispenca.dto;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 import com.castelo.dispenca.modelo.Alimento;
 import com.castelo.dispenca.modelo.Estoque;
@@ -11,12 +11,12 @@ public class EstoqueDTO {
     private Alimento alimento;
     private int quantidade;
     private String codigo;
-    private LocalDateTime data;
+    private LocalDate data;
     
     public EstoqueDTO() {
     }
 
-    public EstoqueDTO(int id, Alimento alimento, int quantidade, String codigo, LocalDateTime data) {
+    public EstoqueDTO(int id, Alimento alimento, int quantidade, String codigo, LocalDate data) {
         this.id = id;
         this.alimento = alimento;
         this.quantidade = quantidade;
@@ -56,25 +56,18 @@ public class EstoqueDTO {
         this.codigo = codigo;
     }
 
-    public LocalDateTime getData() {
+    public LocalDate getData() {
         return data;
     }
 
-    public void setData(LocalDateTime data) {
+    public void setData(LocalDate data) {
         this.data = data;
     }
-
-    /*  Modelo de estrutura
-    
-    public Alimento novoAlimento() {
-     return new Alimento(null, this.name);
- 
- } */
 
     public Estoque novoEstoque(){
 
         return new Estoque(null, alimento, quantidade, codigo, data);
 
     }
-    
+ 
 }

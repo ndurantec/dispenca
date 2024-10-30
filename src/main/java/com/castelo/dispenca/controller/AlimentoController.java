@@ -53,6 +53,8 @@ public class AlimentoController {
 
     }
 
+    //API: INTERFACE DE PROGRAMAÇÃO DE APLICAÇÃO
+
     @GetMapping(value = "/{id}")
     public ResponseEntity<Alimento> findById(@PathVariable Long id) {
 
@@ -62,10 +64,10 @@ public class AlimentoController {
 
     }
 
-    @GetMapping(value = "/findByNome")
-    public List<Alimento> buscarPorNome(@RequestBody AlimentoDTO alimentoDTO) {
+    @PostMapping(value = "/findByNome")
+    public String buscarPorNome(@RequestBody AlimentoDTO alimentoDTO) {
         return alimentoRepository.findByNome(alimentoDTO.getNome());
-   }
+    }
 
    /* @PostMapping("/findByNome")
     public ResponseEntity<Long> buscarContaPorNome(@RequestBody ContaDto contaDto) {
@@ -93,6 +95,8 @@ public class AlimentoController {
         return ResponseEntity.noContent().build();
 
     }
+
+    
 
     /*
      * @DeleteMapping("/{id}")

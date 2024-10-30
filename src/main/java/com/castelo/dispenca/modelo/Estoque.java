@@ -1,7 +1,7 @@
 package com.castelo.dispenca.modelo;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -19,17 +19,21 @@ public class Estoque implements Serializable {
     private Alimento alimento;
     private int quantidade;
     private String codigo;
-    private LocalDateTime data;
-    
+    private LocalDate data;
+
     public Estoque() {
     }
 
-    public Estoque(Long id, Alimento alimento, int quantidade, String codigo, LocalDateTime data) {
+    public Estoque(Long id, Alimento alimento, int quantidade, String codigo, LocalDate data) {
         this.id = id;
         this.alimento = alimento;
         this.quantidade = quantidade;
         this.codigo = codigo;
         this.data = data;
+    }
+
+    public static long getSerialversionuid() {
+        return serialVersionUID;
     }
 
     public Long getId() {
@@ -64,11 +68,11 @@ public class Estoque implements Serializable {
         this.codigo = codigo;
     }
 
-    public LocalDateTime getData() {
+    public LocalDate getData() {
         return data;
     }
 
-    public void setData(LocalDateTime data) {
+    public void setData(LocalDate data) {
         this.data = data;
     }
 
@@ -116,7 +120,6 @@ public class Estoque implements Serializable {
     public String toString() {
         return "Estoque [alimento=" + alimento + ", quantidade=" + quantidade + ", codigo=" + codigo + ", data=" + data
                 + "]";
-    }
-
-    
+    }  
+   
 }
