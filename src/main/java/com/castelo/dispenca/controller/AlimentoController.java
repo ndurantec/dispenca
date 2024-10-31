@@ -53,7 +53,7 @@ public class AlimentoController {
 
     }
 
-    //API: INTERFACE DE PROGRAMAÇÃO DE APLICAÇÃO
+    // API: INTERFACE DE PROGRAMAÇÃO DE APLICAÇÃO
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<Alimento> findById(@PathVariable Long id) {
@@ -69,20 +69,21 @@ public class AlimentoController {
         return alimentoRepository.findByNome(alimentoDTO.getNome());
     }
 
-   /* @PostMapping("/findByNome")
-    public ResponseEntity<Long> buscarContaPorNome(@RequestBody ContaDto contaDto) {
-        Optional<Alimento> alimento = alimentoRepository.findByNome(alimentoDTO.getNome());
-        Conta contaObjeto = conta.get();
-        System.out.println(contaObjeto.toString());
-        return conta.map(c -> ResponseEntity.ok(c.getId()))
-                .orElse(ResponseEntity.notFound().build());
-    } */
+    /*
+     * @PostMapping("/findByNome")
+     * public ResponseEntity<Long> buscarContaPorNome(@RequestBody ContaDto
+     * contaDto) {
+     * Optional<Alimento> alimento =
+     * alimentoRepository.findByNome(alimentoDTO.getNome());
+     * Conta contaObjeto = conta.get();
+     * System.out.println(contaObjeto.toString());
+     * return conta.map(c -> ResponseEntity.ok(c.getId()))
+     * .orElse(ResponseEntity.notFound().build());
+     * }
+     */
 
-
-
-
-    @PutMapping(value = "/{id}")
-    public ResponseEntity<Void> update(@PathVariable Long id, @RequestBody Alimento alimento) {
+    /*@PutMapping(value = "/{id}")
+    public ResponseEntity<Alimento> updateAlimento(@PathVariable Long id, @RequestBody Alimento alimento) {
 
         Optional<Alimento> alimentoBanco = alimentoRepository.findById(id);
 
@@ -94,9 +95,18 @@ public class AlimentoController {
 
         return ResponseEntity.noContent().build();
 
-    }
+    }*/
 
-    
+    @PutMapping("/{id}")
+    public ResponseEntity<Alimento> updateAlimento(@PathVariable Long id, @RequestBody Alimento updateAlimento) {
+        return alimentoRepository.findById(id)
+                .map(alimento -> {
+                    alimento.setNome(updateAlimento.getNome());
+                     alimentoRepository.save(alimento);
+                    return ResponseEntity.ok(alimento);
+                })
+                .orElseGet(() -> ResponseEntity.notFound().build());
+    }
 
     /*
      * @DeleteMapping("/{id}")
@@ -109,9 +119,19 @@ public class AlimentoController {
      */
 
     @DeleteMapping(value = "/{id}")
-    public ResponseEntity<Void> deletar(@PathVariable Long id) {
+    public ResponseEntity<Object> deletar(@PathVariable Long id) {
         alimentoRepository.deleteById(id);
         return ResponseEntity.noContent().build();
     }
+
+    /* @DeleteMapping("/{id}")
+    public ResponseEntity<Object> deleteAlimento(@PathVariable Long id) {
+        return alimentoRepository.findById(id)
+                .map(conta -> {
+                    alimentoRepository.delete(alimento);
+                    return ResponseEntity.noContent().build();
+                })
+                .orElseGet(() -> ResponseEntity.notFound().build());
+    }*/
 
 }
