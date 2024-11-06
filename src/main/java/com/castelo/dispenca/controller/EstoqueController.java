@@ -94,15 +94,7 @@ public class EstoqueController {
      */
 
     // 3 ok
-               
-    @PostMapping(value = "/findByCodigo")
-    public Estoque findByCodigo(@RequestBody EstoqueDTO estoqueDTO){
-        return estoqueRepository.findByCodigo(estoqueDTO.getCodigo());
-    }
-    
-    
-    
-        
+
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<Estoque> findById(@PathVariable Long id) {
@@ -113,6 +105,18 @@ public class EstoqueController {
 
                 .orElse(ResponseEntity.notFound().build());
     }
+
+    @PostMapping(value = "/findByCodigo")
+    public String findByCodigo(@RequestBody EstoqueDTO estoqueDTO){
+        return estoqueRepository.findByCodigo(estoqueDTO.getCodigo());
+    }
+
+
+    //@PostMapping(value = "/findByNome")
+    //public String buscarPorNome(@RequestBody AlimentoDTO alimentoDTO) {
+    //    return alimentoRepository.findByNome(alimentoDTO.getNome());
+    //}
+
 
     /*
      * @PutMapping(value = "/{id}")

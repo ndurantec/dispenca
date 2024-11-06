@@ -9,9 +9,8 @@ import com.castelo.dispenca.dto.EstoqueDTO;
 import com.castelo.dispenca.modelo.Estoque;
 
 public interface EstoqueRepository extends JpaRepository<Estoque, Long> {
-    //Optional<Estoque> findByCodigo(String codigo);
-
-    @Query(value = "select * from estoque where codigo = ?1;", nativeQuery = true)
-    Estoque findByCodigo(String codigo);
     
+    @Query(value = "select o.id from estoque o where o.codigo = ?1;", nativeQuery = true)
+    String findByCodigo(String estoque);
+  
 }
