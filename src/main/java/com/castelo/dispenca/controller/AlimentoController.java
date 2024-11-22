@@ -28,6 +28,7 @@ public class AlimentoController {
 
     @Autowired
     private AlimentoRepository alimentoRepository;
+    
 
     @GetMapping(value = "/findAll")
     public List findAll() {
@@ -40,6 +41,11 @@ public class AlimentoController {
         System.out.println(alimentoDTO.toString());
 
         Alimento alimento = alimentoDTO.novoAlimento();
+
+        if (alimentoDTO != null) {
+            alimentoDTO.getNome().toUpperCase();
+        }              
+
         alimentoRepository.save(alimento);
 
         System.out.println("chegou no insert");

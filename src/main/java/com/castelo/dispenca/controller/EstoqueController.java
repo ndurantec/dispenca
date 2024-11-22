@@ -132,23 +132,16 @@ public class EstoqueController {
     // 4 ok
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<Void> atualizarEstoque(@PathVariable Long id, @RequestBody Estoque estoque) {
-
-        Optional<Estoque> estoqueBanco = estoqueRepository.findById(id);
-
-        Estoque estoqueModificado = estoqueBanco.get();
-
-        estoqueModificado.setAlimento(estoque.getAlimento());
-
-        estoqueModificado.setQuantidade(estoque.getQuantidade());
-
-        estoqueModificado.setCodigo(estoque.getCodigo());
-
-        estoqueModificado.setData(estoque.getData());
-
-        estoqueRepository.save(estoqueModificado);
-
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<Estoque> atualizarEstoque(@PathVariable Long id, @RequestBody Estoque atualizarEstoque) {
+        
+        return estoqueRepository.findById(id).map(estoque -> {
+            estoque.setAlimento(atualizarEstoque.getAlimento());
+            estoque.setQuantidade(atualizarEstoque.getQuantidade());
+            estoque.setCodigo(atualizarEstoque.getCodigo());
+            estoque.setData(atualizarEstoque.getData());
+            estoqueRepository.save(estoque);
+            return ResponseEntity.ok(estoque);
+        }).orElseGet(() -> ResponseEntity.notFound().build()); 
     }
 
     /*

@@ -70,6 +70,6 @@ public class Alimento implements Serializable {
     public String toString() {
         return "Alimento [nome=" + nome + "]";
     }
-
+    
 
 }
